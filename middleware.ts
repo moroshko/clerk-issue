@@ -1,16 +1,14 @@
-import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+
+const isPublicRoute = createRouteMatcher(["/login(.*)", "/signup(.*)"]);
+
+export default clerkMiddleware((auth, req) => {
+  if (!isPublicRoute(req)) {
+    auth().protect();
+  }
+});
 
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api)(.*)"],
 };
-
-export default authMiddleware({
-  afterAuth(auth, req) {
-    if (auth.isPublicRoute || auth.userId !== null) {
-      return NextResponse.next();
-    }
-
-    return redirectToSignIn({ returnBackUrl: req.url });
-  },
-});

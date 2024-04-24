@@ -9,16 +9,12 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=...
 CLERK_SECRET_KEY=...
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/login
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/signup
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 ```
 
-2. Run `bun dev` and visit `http://localhost:3002`
+2. Run `npm i`
 
-3. Open the console and Sign in using Google
+3. Run `npm run dev` and visit `http://localhost:3002`
 
-In the console, you'll see:
+4. Open the console and Sign in using email
 
-> GET http://localhost:3002/ 401 (Unauthorized)
-
-The homepage is rendered properly. However, I'm wondering why the Unauthorized error occurs.
+In the email inbox, two separate emails with two different verification codes appear.
